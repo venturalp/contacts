@@ -35,10 +35,11 @@ type HeaderProps = {
   contacts?: Array<Object>,
   onSubmit?: () => void,
   searchValue?: string,
+  onCreatContact?: () => void,
 }
 
 export default (props: HeaderProps) => {
-  const { contacts, onSubmit, searchValue } = props
+  const { contacts, onSubmit, searchValue, onCreatContact } = props
 
   return (
     <HeaderStyled
@@ -53,7 +54,7 @@ export default (props: HeaderProps) => {
           appearance="primary"
           icon={IcoPlus}
           iconPosition="left"
-          onClick={e => console.log(e)}
+          onClick={onCreatContact}
         >
           Criar contato
         </Button>

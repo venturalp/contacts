@@ -47,7 +47,7 @@ const ButtonWrapper = styled(Button)`
   cursor: pointer;
   display: inline-block;
   border-radius: ${props => props.theme.buttonRadius};
-  box-shadow: ${props => props.theme.buttonShadow};
+  ${props => !props.outline && `box-shadow: ${props.theme.buttonShadow};`};
   border: ${props => props.theme.buttonBorder};
   padding: 12px 16px;
   ${props => {

@@ -15,6 +15,7 @@ const GlobalStyles = createGlobalStyle`
     padding: 0px;
     margin: 0px;
     font-family: Roboto, sans-serif;
+    font-size: 16px;
     background-color: ${props => props.theme.appBg};
   }
 `
