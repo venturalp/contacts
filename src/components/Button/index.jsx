@@ -1,12 +1,13 @@
+// @flow
 import React from 'react'
 import styled, { css } from 'styled-components'
-import { ReactNode } from 'react'
+import { type Node } from 'react'
 import Grid from '../Grid'
 
 type ButtonProps = {
-  children: ReactNode,
+  children: Node,
   appearance: string,
-  icon?: ReactNode,
+  icon?: Object,
   iconPosition?: string,
   outline?: Boolean,
   className?: string,

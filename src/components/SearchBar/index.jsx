@@ -1,3 +1,4 @@
+// @flow
 import React from 'react'
 import styled from 'styled-components'
 import IcoSearch from '../../assets/ic-search.svg'
@@ -5,8 +6,8 @@ import IcoSearch from '../../assets/ic-search.svg'
 type SearchBarProps = {
   placeholder?: string,
   value?: string,
-  onChange: () => void,
-  onSubmit: () => void,
+  onChange?: () => void,
+  onSubmit?: () => void,
 }
 
 const SearchBarWrapper = styled.form`
