@@ -1,11 +1,27 @@
 import React from 'react'
 import { render } from 'react-dom'
 import App from './app'
-import { ThemeProvider } from 'styled-components'
-import { secondaryTheme } from '../config/theme'
+import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import { mainTheme } from '../config/theme'
+
+const GlobalStyles = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap');
+
+  *{
+    box-sizing: border-box;
+  }
+
+  body {
+    padding: 0px;
+    margin: 0px;
+    font-family: Roboto, sans-serif;
+    background-color: ${props => props.theme.appBg};
+  }
+`
 
 render(
-  <ThemeProvider theme={secondaryTheme}>
+  <ThemeProvider theme={mainTheme}>
+    <GlobalStyles />
     <App />
   </ThemeProvider>,
   document.getElementById('app'),
