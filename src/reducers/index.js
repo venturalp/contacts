@@ -16,7 +16,7 @@ const INITIAL_STATE = {
   //     color: '#8368fa',
   //   },
   // ],
-  editContact: undefined,
+  editContact: {},
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -30,6 +30,7 @@ export default (state = INITIAL_STATE, action) => {
       return {
         ...state,
         contacts: action.payload,
+        editContact: {},
       }
     case DELETE_CONTACT:
       return {
