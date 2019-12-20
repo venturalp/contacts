@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import IcoEdit from '../../../assets/ic-edit.svg'
 import IcoDelete from '../../../assets/ic-delete.svg'
+import { useDispatch } from 'react-redux'
+import { saveContact } from '../../../actions'
 
 const BtWrapper = styled.span`
   margin-left: 24px;
@@ -16,7 +18,7 @@ const BtWrapper = styled.span`
 `
 
 const LineWrapper = styled.div`
-  color: ${props => props.theme.listHeader};
+  color: ${props => props.theme.txt};
   font-size: 13px;
   display: flex;
   position: relative;
@@ -24,6 +26,16 @@ const LineWrapper = styled.div`
   align-items: center;
   padding: 12px 0 12px 56px;
   border: 1px solid ${props => props.theme.listBorder};
+  border-bottom: 0px;
+  transition: all 0.2s linear;
+  &:nth-last-child(1) {
+    border-bottom: 1px solid ${props => props.theme.listBorder};
+  }
+  &:hover {
+    background-color: ${props => props.theme.listHover};
+  }
+  background-color: ${props =>
+    props.highlight ? props.theme.listHover : 'initial'};
   & > p {
     width: 30%;
   }
@@ -71,8 +83,14 @@ type LineProps = {
 }
 
 export default ({ contact, onOpenDelete, onEdit }: LineProps) => {
+  const dispatch = useDispatch()
+  if (contact.highlight) {
+    setTimeout(() => {
+      dispatch(saveContact({ ...contact, highlight: false }))
+    }, 10000)
+  }
   return (
-    <LineWrapper>
+    <LineWrapper highlight={contact.highlight}>
       <Pin className="" color={contact.color}>
         {contact.name.substr(0, 1)}
       </Pin>
@@ -83,7 +101,7 @@ export default ({ contact, onOpenDelete, onEdit }: LineProps) => {
         <BtWrapper onClick={onEdit}>
           <IcoEdit />
         </BtWrapper>
-        <BtWrapper onClick={onOpenDelete}>
+        <BtWrapper onClick={() => onOpenDelete(contact.id)}>
           <IcoDelete />
         </BtWrapper>
       </div>

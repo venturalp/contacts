@@ -3,18 +3,19 @@ import {
   SET_EDIT_CONTACT,
   SAVE_CONTACT,
   GET_CONTACTS,
+  DELETE_CONTACT,
 } from '../actions/types'
 
 const INITIAL_STATE = {
-  contacts: [
-    {
-      id: '3345345',
-      name: 'Guilherme Ventura de Souza',
-      email: 'venturalp@gmail.com',
-      phone: '14981022002',
-      color: '#8368fa',
-    },
-  ],
+  // contacts: [
+  //   {
+  //     id: '3345345',
+  //     name: 'Guilherme Ventura de Souza',
+  //     email: 'venturalp@gmail.com',
+  //     phone: '14981022002',
+  //     color: '#8368fa',
+  //   },
+  // ],
   editContact: undefined,
 }
 
@@ -25,6 +26,16 @@ export default (state = INITIAL_STATE, action) => {
         ...state,
         contacts: [...state.contacts, action.payload],
       }
+    case SAVE_CONTACT:
+      return {
+        ...state,
+        contacts: action.payload,
+      }
+    case DELETE_CONTACT:
+      return {
+        ...state,
+        contacts: action.payload,
+      }
     case SET_EDIT_CONTACT:
       return {
         ...state,
@@ -33,6 +44,7 @@ export default (state = INITIAL_STATE, action) => {
     case GET_CONTACTS:
       return {
         ...state,
+        contacts: action.payload,
       }
     default:
       return state

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Modal from '../Modal'
 import Button from '../Button'
 import styled from 'styled-components'
-import { useDispatch, useSelector } from 'react-redux'
-import { addContact } from '../../actions/index'
+import { useDispatch } from 'react-redux'
+import { deleteContact } from '../../actions/index'
 import Input from '../Input'
 import FormGroup from '../FormGroup'
 import { isObjEmpty } from '../../helpers/formHelpers'
@@ -33,13 +33,11 @@ const Footer = ({ onCancel, onDelete }: FooterProps) => {
   )
 }
 
-const ContentWrapper = styled.form`
+const ContentWrapper = styled.div`
   width: 384px;
   font-size: 14px;
   line-height: 1;
-  & > input:last-child {
-    margin-bottom: 35px;
-  }
+  margin-bottom: 35px;
 `
 
 type ModalConfirmProps = {
@@ -51,7 +49,10 @@ export default (props: ModalConfirmProps) => {
   const { onCloseModal, id } = props
   const dispatch = useDispatch()
 
-  const onDelete = () => {}
+  const onDelete = () => {
+    dispatch(deleteContact(id))
+    onCloseModal()
+  }
 
   return (
     <Modal

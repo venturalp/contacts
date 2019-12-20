@@ -3,7 +3,7 @@ import Modal from '../Modal'
 import Button from '../Button'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { addContact } from '../../actions/index'
+import { addContact, saveContact } from '../../actions/index'
 import Input from '../Input'
 import FormGroup from '../FormGroup'
 import { isObjEmpty } from '../../helpers/formHelpers'
@@ -27,7 +27,11 @@ const Footer = ({ onCancel, onSave, isDisable }: FooterProps) => {
       <Button outline appearance="secondary" onClick={onCancel}>
         Cancelar
       </Button>
-      <Button appearance="secondary" disable={isDisable}>
+      <Button
+        appearance="secondary"
+        disable={isDisable}
+        onClick={!isDisable ? onSave : null}
+      >
         Salvar
       </Button>
     </FooterWrapper>
@@ -43,11 +47,10 @@ const FormWrapper = styled.form`
 
 type ModalContactProps = {
   onCloseModal: () => void,
-  isEdit: Boolean,
 }
 
 export default (props: ModalContactProps) => {
-  const { onCloseModal, isEdit = false } = props
+  const { onCloseModal } = props
   const dispatch = useDispatch()
   const [isDisable, setIsDisable] = useState(false)
   const formDataEdit = useSelector(
@@ -64,10 +67,18 @@ export default (props: ModalContactProps) => {
     if (id) setFormData({ ...formData, [id]: value })
   }
 
+  const onSave = () => {
+    if (formData.id) dispatch(saveContact(formData))
+    else {
+      dispatch(addContact(formData))
+    }
+    onCloseModal()
+  }
+
   return (
     <Modal
       title="Criar novo contato"
-      footer={() => Footer({ onCancel: onCloseModal, isDisable })}
+      footer={() => Footer({ onCancel: onCloseModal, isDisable, onSave })}
       onClose={onCloseModal}
     >
       <FormWrapper>

@@ -25,7 +25,7 @@ const htmlPlugin = new HtmlWebpackPlugin({
   template: templateHtml,
   filename: './index.html',
   appMountId: 'app', // Id app mount React
-  title: 'Teste webpack html plugin',
+  title: 'Contacts - Guilherme Ventura de Souza',
   lang: 'pt-br',
   meta: CONFIG.meta,
   inject: false, // it is necessary to avoid duplicate meta tags and to allows html-webpack-template works properly

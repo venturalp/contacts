@@ -1,9 +1,11 @@
 // @flow
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import EmptyList from './EmptyList'
 import LineList from './LineList'
 import ModalConfirm from '../ModalConfirm'
+import { setEditContact } from '../../actions'
 
 const ListWrapper = styled.div`
   margin: 32px 16px 0;
@@ -40,12 +42,15 @@ export default (props: ContactListProps) => {
   const { contacts = [], onCreatContact } = props
   const [isConfirmOpened, setIsConfirmOpened] = useState(false)
   const [idToDelete, setIdToDelete] = useState()
+  const dispatch = useDispatch()
 
   const onCloseModal = () => setIsConfirmOpened(false)
-  const onOpenDelete = () => {
+  const onOpenDelete = id => {
+    setIdToDelete(id)
     setIsConfirmOpened(true)
   }
-  const onEdit = () => {
+  const onEdit = contact => {
+    dispatch(setEditContact(contact))
     onCreatContact()
   }
 
@@ -65,7 +70,7 @@ export default (props: ContactListProps) => {
               contact={contact}
               key={JSON.stringify(contact)}
               onOpenDelete={onOpenDelete}
-              onEdit={onEdit}
+              onEdit={() => onEdit(contact)}
             />
           ))}
           {isConfirmOpened && (

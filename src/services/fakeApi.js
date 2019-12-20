@@ -26,6 +26,7 @@ export const saveContact = data => {
     return contact
   })
   window.localStorage.setItem('contacts', JSON.stringify(contactsUpdated))
+  return contactsUpdated
 }
 
 export const deleteContact = id => {
@@ -33,13 +34,27 @@ export const deleteContact = id => {
   const contactsUpdated = contacts.filter(contact => contact.id !== id)
 
   window.localStorage.setItem('contacts', JSON.stringify(contactsUpdated))
+  return contactsUpdated
 }
 
 export const addContact = data => {
   const contacts = fetchContacts()
-  const contact = { ...data, id: uuid() }
+  const contact = {
+    ...data,
+    id: uuid(),
+    highlight: true,
+    color: colors[randomRange(0, colors.length - 1)],
+  }
   window.localStorage.setItem(
     'contacts',
     JSON.stringify([...contacts, contact]),
   )
+  return contact
+}
+
+export default {
+  addContact,
+  saveContact,
+  deleteContact,
+  fetchContacts,
 }
