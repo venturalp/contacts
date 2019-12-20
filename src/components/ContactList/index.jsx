@@ -8,7 +8,7 @@ import ModalConfirm from '../ModalConfirm'
 import { setEditContact } from '../../actions'
 
 const ListWrapper = styled.div`
-  margin: 32px 16px 0;
+  margin: 32px 16px 32px;
 `
 
 const ListHeader = styled.div`
