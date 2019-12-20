@@ -6,8 +6,8 @@ import IcoSearch from '../../assets/ic-search.svg'
 type SearchBarProps = {
   placeholder?: string,
   value?: string,
-  onChange?: () => void,
-  onSubmit?: () => void,
+  onChange?: Object => void,
+  onSubmit?: string => void,
 }
 
 const SearchBarWrapper = styled.form`
@@ -43,17 +43,23 @@ const SearchBarInput = styled.input`
 `
 
 export default (props: SearchBarProps) => {
-  const { onSubmit, onChange, placeholder = 'Buscar...', value } = props
+  const { onSubmit, onChange, placeholder = 'Buscar...', value = '' } = props
+
+  const submitForm = e => {
+    e.preventDefault()
+    if (onSubmit) onSubmit(value)
+    return false
+  }
 
   return (
-    <SearchBarWrapper onSubmit={onSubmit}>
+    <SearchBarWrapper onSubmit={e => submitForm(e)}>
       <SearchBarInput
         type="text"
         placeholder={placeholder}
         onChange={onChange}
         value={value}
       />
-      <IcoSearch />
+      <IcoSearch onClick={() => onSubmit && onSubmit(value)} />
     </SearchBarWrapper>
   )
 }

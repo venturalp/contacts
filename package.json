@@ -7,7 +7,7 @@
     "test": "jest",
     "build:dev": "export NODE_ENV=development && webpack --mode development --progress --inline --color",
     "start:prd": "export NODE_ENV=production && webpack --mode production --progress --inline --color && webpack-dev-server --mode production --open",
-    "build": "export NODE_ENV=production&& webpack --mode production --progress --inline --color",
+    "build": "export NODE_ENV=production && webpack --mode production --progress --inline --color",
     "start": "export NODE_ENV=development && webpack --mode development --progress --inline --color && webpack-dev-server --mode development --open"
   },
   "repository": {

@@ -12,8 +12,10 @@ import { getContacts } from '../actions'
 
 const Home = () => {
   const [isModalOpened, setIsModalOpened] = useState(false)
+  const [searchValue, setSearchValue] = useState('')
   const contacts = useSelector(({ generalReducer }) => generalReducer.contacts)
   const dispatch = useDispatch()
+  const [filteredContacts, setFilteredContacts] = useState(contacts)
 
   const onCreatContact = () => {
     setIsModalOpened(true)
@@ -23,14 +25,37 @@ const Home = () => {
     setIsModalOpened(false)
   }
 
+  const onSubmit = value => {
+    setSearchValue(value)
+  }
+
+  const filterContacts = () => {
+    if (!searchValue) return contacts
+
+    return contacts.filter(
+      contact =>
+        contact.name.toUpperCase().indexOf(searchValue.toUpperCase()) !== -1 ||
+        contact.email.toUpperCase().indexOf(searchValue.toUpperCase()) !== -1 ||
+        contact.phone.toUpperCase().indexOf(searchValue.toUpperCase()) !== -1,
+    )
+  }
+
   useEffect(() => {
     dispatch(getContacts())
+    setFilteredContacts
   }, [])
 
   return (
     <>
-      <Header contacts={contacts} onCreatContact={onCreatContact} />
-      <ContactList contacts={contacts} onCreatContact={onCreatContact} />
+      <Header
+        contacts={contacts}
+        onCreatContact={onCreatContact}
+        onSubmit={onSubmit}
+      />
+      <ContactList
+        contacts={filterContacts()}
+        onCreatContact={onCreatContact}
+      />
       {isModalOpened && <ModalContact onCloseModal={onCloseModal} />}
     </>
   )

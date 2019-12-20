@@ -42,14 +42,12 @@ const LineWrapper = styled.div`
     width: auto;
   }
   & > div:last-child {
+    width: 100%;
+    padding-right: 16px;
+    position: relative;
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: auto;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 16px;
   }
   @media screen and (min-width: 650px) {
     flex-direction: row;
@@ -57,6 +55,14 @@ const LineWrapper = styled.div`
     align-items: flex-start;
     & > p {
       width: 30%;
+    }
+    & > div:last-child {
+      width: auto;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding-right: 0px;
+      right: 16px;
     }
   }
 `

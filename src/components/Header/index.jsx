@@ -1,5 +1,5 @@
 // @flow
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Grid, { Col } from '../Grid'
 import IcoLogo from '../../assets/ic-logo.svg'
@@ -59,13 +59,17 @@ const HeaderStyled = styled(Grid)`
 
 type HeaderProps = {
   contacts?: Array<Object>,
-  onSubmit?: () => void,
-  searchValue?: string,
+  onSubmit?: string => void,
   onCreatContact?: () => void,
 }
 
 export default (props: HeaderProps) => {
-  const { contacts, onSubmit, searchValue, onCreatContact } = props
+  const { contacts, onCreatContact, onSubmit } = props
+  const [searchValue, setSearchValue] = useState('')
+
+  const changeSearch = e => {
+    setSearchValue(e.target.value)
+  }
 
   return (
     <HeaderStyled
@@ -84,7 +88,11 @@ export default (props: HeaderProps) => {
         >
           Criar contato
         </Button>
-        <SearchBar />
+        <SearchBar
+          value={searchValue}
+          onChange={changeSearch}
+          onSubmit={onSubmit}
+        />
       </Grid>
     </HeaderStyled>
   )
