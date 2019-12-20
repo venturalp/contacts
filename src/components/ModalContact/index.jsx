@@ -3,7 +3,7 @@ import Modal from '../Modal'
 import Button from '../Button'
 import styled from 'styled-components'
 import { useDispatch, useSelector } from 'react-redux'
-import { addContact, saveContact } from '../../actions/index'
+import { addContact, saveContact, setEditContact } from '../../actions/index'
 import Input from '../Input'
 import FormGroup from '../FormGroup'
 import { isObjEmpty } from '../../helpers/formHelpers'
@@ -75,11 +75,16 @@ export default (props: ModalContactProps) => {
     onCloseModal()
   }
 
+  const onCancel = () => {
+    if (formData.id) dispatch(setEditContact({}))
+    onCloseModal()
+  }
+
   return (
     <Modal
       title="Criar novo contato"
-      footer={() => Footer({ onCancel: onCloseModal, isDisable, onSave })}
-      onClose={onCloseModal}
+      footer={() => Footer({ onCancel, isDisable, onSave })}
+      onClose={onCancel}
     >
       <FormWrapper>
         <FormGroup>
