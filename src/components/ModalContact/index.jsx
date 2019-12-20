@@ -7,6 +7,7 @@ import { addContact, saveContact, setEditContact } from '../../actions/index'
 import Input from '../Input'
 import FormGroup from '../FormGroup'
 import { isObjEmpty } from '../../helpers/formHelpers'
+import ClickOutside from '../OutsideClick'
 
 const FooterWrapper = styled.div`
   text-align: right;
@@ -39,9 +40,12 @@ const Footer = ({ onCancel, onSave, isDisable }: FooterProps) => {
 }
 
 const FormWrapper = styled.form`
-  width: 384px;
   & > input:last-child {
     margin-bottom: 0px;
+  }
+  width: auto;
+  @media screen and (min-width: 650px) {
+    width: 384px;
   }
 `
 

@@ -8,6 +8,10 @@ const Modal = styled(ClickOutside)`
   box-shadow: 0 16px 10px 0 rgba(0, 0, 0, 0.16);
   z-index: 99;
   background-color: #ffffff;
+  width: 95%;
+  @media screen and (min-width: 650px) {
+    width: auto;
+  }
 `
 
 const ModalWrapper = styled.div`

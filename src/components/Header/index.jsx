@@ -8,15 +8,17 @@ import Button from '../Button'
 import SearchBar from '../SearchBar'
 
 const HeaderStyled = styled(Grid)`
+  display: block;
   padding: 16px;
+
   & > div {
     & > svg {
       width: 148px;
-      margin-right: 60px;
+      margin-right: 0px;
     }
   }
   ${Button} {
-    margin-right: 24px;
+    margin-right: 0px;
     padding-top: 8px;
     padding-bottom: 8px;
     ${props =>
@@ -26,8 +28,32 @@ const HeaderStyled = styled(Grid)`
     `
         : ''}
   }
-  ${Grid}:last-child {
-    flex-grow: 1;
+  & > ${Grid}:last-child {
+    flex-direction: column;
+    form {
+      order: -1;
+      width: 100%;
+      margin: 20px 0;
+    }
+  }
+  @media screen and (min-width: 650px) {
+    display: flex;
+    & > div {
+      & > svg {
+        margin-right: 65px;
+      }
+    }
+    ${Button} {
+      margin-right: 24px;
+    }
+    & > ${Grid}:last-child {
+      flex-direction: row;
+      flex-grow: 1;
+      form {
+        order: 2;
+        width: auto;
+      }
+    }
   }
 `
 

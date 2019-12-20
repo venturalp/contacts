@@ -22,12 +22,14 @@ const LineWrapper = styled.div`
   font-size: 13px;
   display: flex;
   position: relative;
-  justify-content: flex-start;
-  align-items: center;
   padding: 12px 0 12px 56px;
   border: 1px solid ${props => props.theme.listBorder};
   border-bottom: 0px;
   transition: all 0.2s linear;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
   &:nth-last-child(1) {
     border-bottom: 1px solid ${props => props.theme.listBorder};
   }
@@ -37,7 +39,7 @@ const LineWrapper = styled.div`
   background-color: ${props =>
     props.highlight ? props.theme.listHover : 'initial'};
   & > p {
-    width: 30%;
+    width: auto;
   }
   & > div:last-child {
     display: flex;
@@ -48,6 +50,14 @@ const LineWrapper = styled.div`
     top: 50%;
     transform: translateY(-50%);
     right: 16px;
+  }
+  @media screen and (min-width: 650px) {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    & > p {
+      width: 30%;
+    }
   }
 `
 
