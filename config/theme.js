@@ -1,5 +1,3 @@
-import theme from 'styled-theming'
-
 export const mainTheme = {
   appBg: '#f8f9fd',
   primaryBgButton: '#dbff90',

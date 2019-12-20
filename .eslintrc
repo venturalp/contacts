@@ -8,7 +8,7 @@
     "plugin:flowtype/recommended",
     "plugin:flowtype-errors/recommended"
   ],
-  "plugins": ["flowtype", "unused-imports"],
+  "plugins": ["flowtype", "unused-imports", "react-hooks"],
   "env": {
     "browser": true,
     "node": true,
@@ -27,7 +27,6 @@
       "error",
       { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
     ],
-    ""
     "no-undef": 2,
     "no-use-before-define": [2, "nofunc"],
     "import/no-named-as-default": 0,
@@ -57,7 +56,9 @@
     "react/static-property-placement": 0,
     "flowtype/no-types-missing-file-annotation": 0,
     "comma-dangle": 2,
-    "react/jsx-props-no-spreading": [{"custom": "ignore", "explicitSpread": "ignore"}],
+    "react/jsx-props-no-spreading": [
+      { "custom": "ignore", "explicitSpread": "ignore" }
+    ],
     "react/jsx-filename-extension": [
       1,
       {
@@ -72,7 +73,9 @@
         "specialLink": ["to"],
         "aspects": ["noHref", "invalidHref", "preferButton"]
       }
-    ]
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn"
   },
   "settings": {
     "import/resolver": {

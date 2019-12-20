@@ -30,11 +30,15 @@ const SearchBarInput = styled.input`
   appearance: none;
   padding: 7px 32px 6px 8px;
   border-radius: 4px;
-  border: 0px;
+  border: 1px solid ${props => props.theme.searchBg};
   width: 100%;
   font-family: ${props => props.theme.fontBase};
   ::placeholder {
     color: ${props => props.theme.searchPlaceholder};
+  }
+  &:focus {
+    outline: none;
+    border: 1px solid ${props => props.theme.searchPlaceholder};
   }
 `
 

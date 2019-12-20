@@ -6,8 +6,10 @@
   "terminal.integrated.shellArgs.windows": ["-NoLogo"],
   "javascript.updateImportsOnFileMove.enabled": "always",
   "editor.formatOnSave": true,
-  "eslint.autoFixOnSave": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
